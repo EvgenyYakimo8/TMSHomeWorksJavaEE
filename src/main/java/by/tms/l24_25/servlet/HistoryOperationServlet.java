@@ -3,7 +3,6 @@ package by.tms.l24_25.servlet;
 import by.tms.l24_25.model.Operation;
 import by.tms.l24_25.service.OperationService;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +15,7 @@ public class HistoryOperationServlet extends HttpServlet {
     final private OperationService operationService = new OperationService();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         List<Operation> operations = operationService.getAllOperations();
 
         resp.setContentType("text/html");

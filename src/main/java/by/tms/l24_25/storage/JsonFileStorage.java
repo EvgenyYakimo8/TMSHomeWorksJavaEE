@@ -5,7 +5,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,25 +14,17 @@ public class JsonFileStorage implements OperationStorage {
 
     @Override
     public void safe(Operation operation) {
-        List<Operation> list = new ArrayList<>();
+        List<Operation> list = historyReader();
 
-        try (FileReader fileReader = new FileReader(HISTORY_OPERATION)) {
-            if (HISTORY_OPERATION.length()<1) {
-                list.add(operation);
-            } else { // todo протестить, если файл окажется пустым и не пустым
-                Type listType = new TypeToken<List<Operation>>() {
-                }.getType();
-                list.add(gson.fromJson(fileReader, listType));
-                list.add(operation);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if (list == null || list.isEmpty()) {
+            list = new ArrayList<>();
+            list.add(operation);
+        } else {
+            list.add(operation);
         }
 
-        String json = gson.toJson(list);
-
         try (FileWriter fileWriter = new FileWriter(HISTORY_OPERATION)) {
-            gson.toJson(json, fileWriter);
+            gson.toJson(list, fileWriter);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -41,12 +32,15 @@ public class JsonFileStorage implements OperationStorage {
 
     @Override
     public List<Operation> findAll() {
-        List<Operation> list = new ArrayList<>();
+        return historyReader();
+    }
 
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(HISTORY_OPERATION))) {
-            Type listType = new TypeToken<List<Operation>>() {
-            }.getType();
-            list.add(gson.fromJson(bufferedReader, listType));
+    // ниже служебные приватные методы
+    private List<Operation> historyReader() {
+        List<Operation> list;
+        try (FileReader fileReader = new FileReader(HISTORY_OPERATION)) {
+            TypeToken<ArrayList<Operation>> listType = new TypeToken<>() {};
+            list = gson.fromJson(fileReader, listType);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -13,7 +13,7 @@ public class OperationService{
         switch (operation.getType()) {
             case "SUM", "sum":
                 operation.setResult(operation.getNum1() + operation.getNum2());
-                operationStorage.safe(operation); // todo сделать сохранение в файл
+                operationStorage.safe(operation);
                 return operation;
             case "SUB", "sub":
                 operation.setResult(operation.getNum1() - operation.getNum2());
@@ -31,6 +31,6 @@ public class OperationService{
         throw new IllegalArgumentException("Operation type not supported");
     }
     public List<Operation> getAllOperations() {
-        return operationStorage.findAll(); // todo сделать чтение из файла и отправку в браузер
+        return operationStorage.findAll();
     }
 }

@@ -1,7 +1,7 @@
-package by.tms.lesson24_25.servlet;
+package by.tms.l24_25.servlet;
 
-import by.tms.lesson24_25.model.Operation;
-import by.tms.lesson24_25.service.OperationService;
+import by.tms.l24_25.model.Operation;
+import by.tms.l24_25.service.OperationService;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;

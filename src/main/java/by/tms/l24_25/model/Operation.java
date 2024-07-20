@@ -1,4 +1,4 @@
-package by.tms.lesson24_25.model;
+package by.tms.l24_25.model;
 
 public class Operation {
     private double num1;

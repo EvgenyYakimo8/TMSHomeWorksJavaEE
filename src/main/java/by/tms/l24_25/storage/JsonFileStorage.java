@@ -10,7 +10,7 @@ import java.util.List;
 
 public class JsonFileStorage implements OperationStorage {
     final private Gson gson = new Gson();
-    final private File HISTORY_OPERATION = new File("history.json");
+    final private File HISTORY_OPERATION = new File("D:\\JAVA\\projects_java\\TMSHomeWorksJavaEE\\TMSHomeWorksJavaEE\\src\\main\\resources\\history.json");
 
     @Override
     public void safe(Operation operation) {

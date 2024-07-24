@@ -1,16 +1,13 @@
 package by.tms.l28_29.model;
 
+import lombok.Builder;
+
+@Builder
 public class Operation {
     private double num1;
     private double num2;
     private double result;
     private String type;
-
-    public Operation(double num1, double num2, String type) {
-        this.num1 = num1;
-        this.num2 = num2;
-        this.type = type;
-    }
 
     public double getNum1() {
         return num1;

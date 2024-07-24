@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @WebServlet(value = "/reg", name = "RegServlet") // localhost:8080/reg
 public class RegServlet extends HttpServlet {
-    UserService userService = new UserService();
+    UserService userService = UserService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,7 +25,11 @@ public class RegServlet extends HttpServlet {
         String password = req.getParameter("password");
         String email = req.getParameter("email");
 
-        userService.registration(new User(username, password, email));
+        userService.registration(User.builder()
+                .userName(username)
+                .password(password)
+                .email(email)
+                .build());
 
         resp.sendRedirect("/login?username=" + username);
     }

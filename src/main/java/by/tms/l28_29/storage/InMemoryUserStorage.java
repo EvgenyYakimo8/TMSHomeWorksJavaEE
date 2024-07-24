@@ -8,7 +8,18 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class InMemoryUserStorage {
-    private static final List<User> users = new ArrayList<User>();
+    private static InMemoryUserStorage instance;
+
+    private final List<User> users = new ArrayList<User>();
+
+    private InMemoryUserStorage() {}
+
+    public static InMemoryUserStorage getInstance() {
+        if (instance == null) {
+            instance = new InMemoryUserStorage();
+        }
+        return instance;
+    }
 
     public void save(User user) {
         users.add(user);

@@ -5,6 +5,10 @@ import by.tms.l28_29.model.Operation;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Singleton
+ * */
+
 public class InMemoryCalculatorStorage {
     private static InMemoryCalculatorStorage instance;
 

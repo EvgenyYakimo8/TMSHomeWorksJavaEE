@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @WebServlet(value = "/calc", name = "CalculatorServlet") // localhost:8080/calc
 public class CalculatorServlet extends HomeServlet {
-    OperationService operationService = new OperationService();
+    OperationService operationService = OperationService.getInstance();
     InMemoryCalculatorStorage inMemoryCalculatorStorage = InMemoryCalculatorStorage.getInstance();
 
     @Override

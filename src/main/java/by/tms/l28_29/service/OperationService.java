@@ -2,10 +2,20 @@ package by.tms.l28_29.service;
 
 import by.tms.l28_29.model.Operation;
 import by.tms.l28_29.storage.InMemoryCalculatorStorage;
-import by.tms.l28_29.storage.InMemoryUserStorage;
 
 public class OperationService {
+
     private final InMemoryCalculatorStorage inMemoryCalculatorStorage = InMemoryCalculatorStorage.getInstance();
+    private static OperationService instance;
+
+    private OperationService() {}
+
+    public static OperationService getInstance() {
+        if (instance == null) {
+            instance = new OperationService();
+        }
+        return instance;
+    }
 
     public Operation executeOperation(Operation operation) {
         switch (operation.getType()) {

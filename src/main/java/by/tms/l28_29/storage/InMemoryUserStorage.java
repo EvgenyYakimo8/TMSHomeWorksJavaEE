@@ -5,7 +5,10 @@ import by.tms.l28_29.model.User;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
+/**
+ * Singleton
+ * */
 
 public class InMemoryUserStorage {
     private static InMemoryUserStorage instance;

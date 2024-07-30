@@ -1,7 +1,10 @@
 package by.tms.l28_29.servlet;
 
-import by.tms.l28_29.model.Operation;
 import by.tms.l28_29.service.OperationService;
+import by.tms.l28_29.model.operations.DivOperation;
+import by.tms.l28_29.model.operations.MulOperation;
+import by.tms.l28_29.model.operations.SubOperation;
+import by.tms.l28_29.model.operations.SumOperation;
 import by.tms.l28_29.storage.InMemoryCalculatorStorage;
 
 import javax.servlet.ServletException;
@@ -22,18 +25,17 @@ public class CalculatorServlet extends HomeServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        double num1 = Double.parseDouble(req.getParameter("num1"));
-        double num2 = Double.parseDouble(req.getParameter("num2"));
-        String type = req.getParameter("type");
 
-        Operation operation = Operation.builder()
-                .num1(num1)
-                .num2(num2)
-                .type(type)
-                .build();
+        by.tms.l28_29.model.operations.Operation operation = switch (req.getParameter("type")){
+            case "SUM","sum" -> new SumOperation(Double.parseDouble(req.getParameter("num1")), Double.parseDouble(req.getParameter("num2")), req.getParameter("type"));
+            case "SUB","sub" -> new SubOperation(Double.parseDouble(req.getParameter("num1")), Double.parseDouble(req.getParameter("num2")), req.getParameter("type"));
+            case "MUL","mul" -> new MulOperation(Double.parseDouble(req.getParameter("num1")), Double.parseDouble(req.getParameter("num2")), req.getParameter("type"));
+            case "DIV","div" -> new DivOperation(Double.parseDouble(req.getParameter("num1")), Double.parseDouble(req.getParameter("num2")), req.getParameter("type"));
+            default -> throw new IllegalStateException("Unexpected value: " + (req.getParameter("type")));
+        };
 
-        Operation execute = operationService.executeOperation(operation);
-        req.setAttribute("result", execute.getResult());
+        double result = operationService.process(operation);
+        req.setAttribute("result", result);
         req.setAttribute("operationsHistory", inMemoryCalculatorStorage.getCalculatorHistory());
         getServletContext().getRequestDispatcher("/pages/calc.jsp").forward(req, resp);
     }

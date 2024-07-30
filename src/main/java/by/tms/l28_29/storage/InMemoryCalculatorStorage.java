@@ -1,6 +1,6 @@
 package by.tms.l28_29.storage;
 
-import by.tms.l28_29.model.Operation;
+import by.tms.l28_29.model.operations.Operation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
 public class InMemoryCalculatorStorage {
     private static InMemoryCalculatorStorage instance;
 
-    private final List<Operation> calculatorHistory = new ArrayList<>();
+    private final List<by.tms.l28_29.model.operations.Operation> calculatorHistory = new ArrayList<>();
 
     private InMemoryCalculatorStorage() {}
 
@@ -23,7 +23,7 @@ public class InMemoryCalculatorStorage {
         return instance;
     }
 
-    public void safeCalculatorHistory(Operation operation) {
+    public void saveCalculatorHistory(by.tms.l28_29.model.operations.Operation operation) {
         calculatorHistory.add(operation);
     }
 

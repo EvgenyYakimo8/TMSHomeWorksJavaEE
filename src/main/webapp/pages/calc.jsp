@@ -18,7 +18,6 @@
 <div class="container">
     <div class="row min-vh-100 align-items-center">
         <div class="col-1">
-
         </div>
         <div class="col-8">
             <div class="row justify-content-center mb-5">
@@ -48,19 +47,17 @@
                     </select>
                     <button type="submit" class="btn btn-success w-100 mb-2 mt-3">Calculate</button>
                     <!-- Button trigger modal -->
-                    <button style="text-align: center" type="button" class="btn btn-outline-success btn-sm w-100" data-bs-toggle="modal" data-bs-target="#historyModal">
+                    <button style="text-align: center" type="button" class="btn btn-outline-success btn-sm w-100"
+                            data-bs-toggle="modal" data-bs-target="#historyModal">
                         History
                     </button>
                     <!-- Button trigger modal -->
                 </form>
             </div>
-
             <div style="text-align: center">
                 <label for="exampleInputPassword1" class="form-label"><h1><b>${result}</b></h1></label>
             </div>
-
         </div>
-
         <div class="col-3"></div>
 
     </div>
@@ -75,7 +72,8 @@
             </div>
             <div class="modal-body">
                 <core:forEach var="operation" items="${operationsHistory}">
-                    <h5>Type: ${operation.type} | num1: ${operation.num1} | num2: ${operation.num2} | Result: ${operation.result}</h5>
+                    <h5>Type: ${operation.type} | num1: ${operation.num1} | num2: ${operation.num2} |
+                        Result: ${operation.result}</h5>
                     <p>---------------------------------------------------------------------</p>
                 </core:forEach>
             </div>

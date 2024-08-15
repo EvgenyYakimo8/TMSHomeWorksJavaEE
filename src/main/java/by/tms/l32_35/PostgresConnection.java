@@ -1,4 +1,4 @@
-package by.tms.l32;
+package by.tms.l32_35;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

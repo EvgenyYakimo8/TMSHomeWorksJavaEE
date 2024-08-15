@@ -1,4 +1,4 @@
-package by.tms.l32;
+package by.tms.l32_35;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,4 +12,6 @@ public class Account {
     String name;
     String username;
     String password;
+    int codeTelephone;
+    int telephone;
 }
